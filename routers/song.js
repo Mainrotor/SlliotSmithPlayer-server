@@ -6,6 +6,6 @@ router.get("/", songController.getAllSongs);
 
 router.get("/:string", songController.getSong);
 
-router.get("/songtest", songController.songtest);
+router.get("/songtest", songController.songTest);
 
 module.exports = router;

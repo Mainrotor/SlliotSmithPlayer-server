@@ -3,11 +3,10 @@ const pool = require("../sql/connection");
 const { handleSQLError } = require("../sql/error");
 
 const getAllSongs = (req, res) => {
-  res.send("get all songs!");
-  // pool.query("SELECT * FROM songs", (err, rows) => {
-  //   if (err) return handleSQLError(res, err);
-  //   return res.json(rows);
-  // });
+  pool.query("SELECT * FROM songs", (err, rows) => {
+    if (err) return handleSQLError(res, err);
+    return res.json(rows);
+  });
 };
 
 const getSong = (req, res) => {
@@ -23,8 +22,8 @@ const getSong = (req, res) => {
   });
 };
 
-const songtest = (req, res) => {
-  return res.send("song test");
+const songTest = (req, res) => {
+  return res.json("song test");
 };
 
-module.exports = { getAllSongs, getSong, songtest };
+module.exports = { getAllSongs, getSong, songTest };
