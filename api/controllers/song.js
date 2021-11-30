@@ -1,6 +1,6 @@
 const mysql = require("mysql");
-const pool = require("../sql/connection");
-const { handleSQLError } = require("../sql/error");
+const pool = require("../../sql/connection");
+const { handleSQLError } = require("../../sql/error");
 
 const getAllSongs = (req, res) => {
   pool.query("SELECT * FROM songs", (err, rows) => {

@@ -1,8 +1,12 @@
 const express = require("express");
 const songController = require("../controllers/song");
+const usersController = require("../controllers/users");
 const router = express.Router();
 
-router.get("/", songController.getAllSongs);
+const cors = require("cors");
+router.use(cors());
+
+router.get("/", usersController.authenticateToken, songController.getAllSongs);
 
 router.get("/:string", songController.getSong);
 
