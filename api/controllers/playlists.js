@@ -31,7 +31,7 @@ const renamePlaylist = (req, res) => {
 
 const deletePlaylist = (req, res) => {
   if (req.user.user === req.body.userID) {
-    let sql = "delete from playlists where playlistID = ?";
+    let sql = "delete from playlist_songs where playlistID = ?";
 
     sql = mysql.format(sql, req.params.playlistID);
 
@@ -39,7 +39,17 @@ const deletePlaylist = (req, res) => {
       if (err) {
         return res.json({ success: "Could not delete playlist" });
       }
-      return res.json({ success: "playlist-deleted" });
+
+      let sql = "delete from playlists where playlistID = ?";
+
+      sql = mysql.format(sql, req.params.playlistID);
+
+      pool.query(sql, (err, rows) => {
+        if (err) {
+          return res.json({ success: "Could not delete playlist" });
+        }
+        return res.json({ success: "playlist-deleted" });
+      });
     });
   } else return res.json({ success: "invalid-auth" });
 };

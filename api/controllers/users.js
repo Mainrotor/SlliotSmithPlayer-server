@@ -98,7 +98,7 @@ const login = async (req, res) => {
         }
       );
     } catch {
-      return res.status(500).send("an error occurred");
+      return res.json({ success: "email-not-found" });
     }
   });
 };
